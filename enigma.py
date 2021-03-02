@@ -11,3 +11,6 @@ class Enigma:
 
   def generate_date(self):
     return date.today().strftime("%d%m%y")
+
+  def get_offset(self, date):
+    return str(int(date) * int(date))[-4:]

@@ -15,7 +15,14 @@ def test_generate_date():
 
   assert isinstance(date, str) == True
   assert len(list(date)) == 6
-  
+
+def test_get_offset():
+  enigma = Enigma()
+  date = '040895'
+  offset = enigma.get_offset(date)
+  expected = '1025'
+
+  assert expected == offset
 
 
 # # encrypt a message with a key and date
