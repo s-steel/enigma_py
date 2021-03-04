@@ -1,5 +1,6 @@
 from enigma import Enigma 
 import unittest
+from datetime import date
 
 
 def test_generating_key():
@@ -71,36 +72,57 @@ def test_encrypt_with_key_date():
 
   assert outcome == expected
 
+def test_encrypt_with_exclamation():
+  message = 'hello world!'
+  key = '02715'
+  date = '040895'
+  enigma = Enigma()
+
+  outcome = enigma.encrypt(message, key, date)
+
+  expected = {
+              'encryption': 'keder ohulw!',
+              'key': '02715',
+              'date': '040895'
+              }
+
+  assert outcome == expected
+
+def test_encryption_with_special_chars():
+  message = '? : # * }'
+  key = '01020'
+  date = '010203'
+  enigma = Enigma()
+
+  outcome = enigma.encrypt(message, key, date)
+
+  expected = {'encryption': '?l:b#l*b}',
+              'key': '01020',
+              'date': '010203'
+              }
+
+  assert expected == outcome
+
+
+# More tests without a key or date for encryption 
+# These would need to be mocked out 
 
 # def test_encrypt_with_only_key():
-# def test_encrypt_with_only_date():
+#   message = 'hello world'
+#   key = '02715'
+#   enigma = Enigma()
+#   outcome = enigma.encrypt(message, key)
+#   expected = {
+#               'encryption': 'keder ohulw',
+#               'key': '02715',
+#               'date': date.today().strftime("%d%m%y")
+#               }
+
+#   assert outcome == expected
+
 # def test_encrypt_without_key_or_date():
+#   message = 'hello world'
+#   enigma = Enigma()
+#   outcome = enigma.encrypt(message)
 
-
-# # encrypt a message with a key and date
-# pry(main)> enigma.encrypt("hello world", "02715", "040895")
-# #=>
-# #   {
-# #     encryption: "keder ohulw",
-# #     key: "02715",
-# #     date: "040895"
-# #   }
-
-# # decrypt a message with a key and date
-# pry(main) > enigma.decrypt("keder ohulw", "02715", "040895")
-# #=>
-# #   {
-# #     decryption: "hello world",
-# #     key: "02715",
-# #     date: "040895"
-# #   }
-
-# can encrypt without a date and/or key
-# pry(main)> enigma.encrypt("hello world")
-# pry(main)> encrypted = enigma.encrypt("hello world", "02715")
-
-# from enigma import Enigma
-
-# def test_encrypting_message():
-
-#     assert outcome == expected
+#   assert outcome['encryption'] == 'keder ohulw'

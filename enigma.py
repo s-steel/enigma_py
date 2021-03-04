@@ -28,24 +28,28 @@ class Enigma:
 
   def shift_letter(self, letter, shift):
     letter_index = self.letters.index(letter)
-    if letter_index + shift > 27:
-      shift = (letter_index + shift) % 27
+    if ((shift % 27) + letter_index) >= 27:
+      shift = ((shift % 27) + letter_index) - 27
       return self.letters[shift]
     else:
-      return self.letters[letter_index + shift]
+      return self.letters[((shift % 27) + letter_index)]
 
   def encrypt_message(self, message, key, date):
     new_message = []
     index = 0
     shift = self.get_shift(key, date)
     for char in list(message.lower()):
-      new_letter = self.shift_letter(char, shift[index])
-      new_message.append(new_letter)
-      if index >= 3:
-        index = 0
+      if char in self.letters:
+        new_letter = self.shift_letter(char, shift[index])
+        new_message.append(new_letter)
+        if index >= 3:
+          index = 0
+        else:
+          index += 1
       else:
+        new_message.append(char)
         index += 1
-
+        # this is assuming a special character counts towards a shift 
     return ''.join(new_message)
 
   def encrypt(self, message, key = 'None', date = date.today().strftime("%d%m%y")):
