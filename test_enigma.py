@@ -55,21 +55,21 @@ def test_encrypt_message():
 
   assert 'keder ohulw' == encrypted_message
 
-# def test_encrypt_with_key_date():
-#   message = 'hello world'
-#   key = '02715'
-#   date = '040895'
-#   enigma = Enigma()
+def test_encrypt_with_key_date():
+  message = 'hello world'
+  key = '02715'
+  date = '040895'
+  enigma = Enigma()
 
-#   outcome = enigma.encrypt(message, key, date)
+  outcome = enigma.encrypt(message, key, date)
 
-#   expected = {
-#               'encryption': 'keder ohulw',
-#               'key': '02715',
-#               'date': '040895'
-#               }
+  expected = {
+              'encryption': 'keder ohulw',
+              'key': '02715',
+              'date': '040895'
+              }
 
-#   assert outcome == expected
+  assert outcome == expected
 
 
 # def test_encrypt_with_only_key():

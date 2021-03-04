@@ -48,22 +48,11 @@ class Enigma:
 
     return ''.join(new_message)
 
-#   def encrypt(self, message, key, date):
-#     new_message = []
-#     shift = self.get_shift(key, date)
-#     if len(message) == 0:
-#       ''
-#     else:
-#       # self.shift_letter(message[0], shift[0]) + encrypt(strip(message[1:-1]), date)
-#       # new_message = self.shift_letter(message[0], shift[0]) + self.encrypt(message[1:-1], key, date)
-#     # for char in list(message.lower()):
-#     #   new_msg.append(self.letters[new_loc])
-#       return new_message
-
-#     def rev_str(s)
-#   if s.empty?
-#     ''
-#   else 
-#     s[-1] + rev_str(s.slice(0..-2))
-#   end
-# end
+  def encrypt(self, message, key = 'None', date = date.today().strftime("%d%m%y")):
+    if key == 'None':
+      key = self.generate_key()
+    return {
+      'encryption': self.encrypt_message(message, key, date),
+      'key': key,
+      'date': date
+    }
