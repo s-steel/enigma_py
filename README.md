@@ -1,1 +1,3 @@
-Practice learning Python by creating an Enigma encoding machine in Python
+Enigma encoding machine created in Python
+
+This was built as a way for me to practice learning python.
