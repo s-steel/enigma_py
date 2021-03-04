@@ -46,6 +46,37 @@ def test_shift_letter():
   assert enigma.shift_letter(char_2, shift_2) == 'e'
   assert enigma.shift_letter(char_3, shift_3) == ' '
 
+def test_encrypt_message():
+  enigma = Enigma()
+  key = '02715'
+  date = '040895'
+  message = 'hello world'
+  encrypted_message = enigma.encrypt_message(message, key, date)
+
+  assert 'keder ohulw' == encrypted_message
+
+# def test_encrypt_with_key_date():
+#   message = 'hello world'
+#   key = '02715'
+#   date = '040895'
+#   enigma = Enigma()
+
+#   outcome = enigma.encrypt(message, key, date)
+
+#   expected = {
+#               'encryption': 'keder ohulw',
+#               'key': '02715',
+#               'date': '040895'
+#               }
+
+#   assert outcome == expected
+
+
+# def test_encrypt_with_only_key():
+# def test_encrypt_with_only_date():
+# def test_encrypt_without_key_or_date():
+
+
 # # encrypt a message with a key and date
 # pry(main)> enigma.encrypt("hello world", "02715", "040895")
 # #=>
@@ -64,21 +95,12 @@ def test_shift_letter():
 # #     date: "040895"
 # #   }
 
+# can encrypt without a date and/or key
+# pry(main)> enigma.encrypt("hello world")
+# pry(main)> encrypted = enigma.encrypt("hello world", "02715")
 
 # from enigma import Enigma
 
 # def test_encrypting_message():
-#     message = 'hello world'
-#     key = '02715'
-#     date = '040895'
-#     enigma = Enigma()
-
-#     outcome = enigma.encrypt(message, key, date)
-
-#     expected = {
-#     'encryption': 'keder ohulw',
-#     'key': '02715',
-#     'date': '040895'
-#     }
 
 #     assert outcome == expected

@@ -29,7 +29,41 @@ class Enigma:
   def shift_letter(self, letter, shift):
     letter_index = self.letters.index(letter)
     if letter_index + shift > 27:
-      shift = (letter_index + shift) - 27
+      shift = (letter_index + shift) % 27
       return self.letters[shift]
     else:
       return self.letters[letter_index + shift]
+
+  def encrypt_message(self, message, key, date):
+    new_message = []
+    index = 0
+    shift = self.get_shift(key, date)
+    for char in list(message.lower()):
+      new_letter = self.shift_letter(char, shift[index])
+      new_message.append(new_letter)
+      if index >= 3:
+        index = 0
+      else:
+        index += 1
+
+    return ''.join(new_message)
+
+#   def encrypt(self, message, key, date):
+#     new_message = []
+#     shift = self.get_shift(key, date)
+#     if len(message) == 0:
+#       ''
+#     else:
+#       # self.shift_letter(message[0], shift[0]) + encrypt(strip(message[1:-1]), date)
+#       # new_message = self.shift_letter(message[0], shift[0]) + self.encrypt(message[1:-1], key, date)
+#     # for char in list(message.lower()):
+#     #   new_msg.append(self.letters[new_loc])
+#       return new_message
+
+#     def rev_str(s)
+#   if s.empty?
+#     ''
+#   else 
+#     s[-1] + rev_str(s.slice(0..-2))
+#   end
+# end
